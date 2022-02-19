@@ -7,7 +7,10 @@ const Todo = require("./models/Todo");
 mongoose
   .connect(
     "mongodb+srv://aymen:polm1213@cluster0.veqss.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
-    { useNewUrlParser: true, useUnifiedTopology: true }
+    {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    }
   )
   .then(() => console.log("Connexion à MongoDB réussie !"))
   .catch(() => console.log("Connexion à MongoDB échouée !"));
@@ -25,6 +28,10 @@ app.use((req, res, next) => {
     "GET, POST, PUT, DELETE, PATCH, OPTIONS"
   );
   next();
+});
+
+app.get("/api/", (req, res, next) => {
+  res.status(200).send("Welcome to mern todo");
 });
 
 app.post("/api/todos", (req, res, next) => {
